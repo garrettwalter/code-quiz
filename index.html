@@ -14,18 +14,102 @@
             <div class="jumbotron">
             <h1 class="display-4">Code Quiz!</h1>
             <p class="lead">This is a simple quiz over code!</p>
-            <a id="startGame" class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a id="startGame" class="btn btn-primary btn-lg" href="#" role="button">Start Quiz</a>
           </div>
         </section>
+        <section id="qNa">
+            <div class="row">
+                <div class="col-sm-12" id="question"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="answers"></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12" id="result"></div>
+            </div>
+        </section>
+
         
         <script>
-           var welcomeContainer = document.getElementById("welcome");
-           var startButton = document.getElementById("startGame")
 
-                startButton.addEventListener("click", function () {
-                    welcomeContainer.style.display = "none";
-                    var optionsToDisplay = stages[currentStage].options;
-                });
+           var welcomeContainer = document.getElementById("welcome");
+           var startButton = document.getElementById("startGame");
+           var question = document.getElementById("question");
+           var answers = document.getElementById("answers");
+           var result = document.getElementById("result");
+           
+           var currentStage = 0;
+           var stages = [
+             {
+                question: ["What do we manipulate?"],
+                answers: ["Nothing", "The Dom", "Google", "Answer D"],
+             },
+             {
+                question: ["What do we manipulate 2?"],
+                answers: ["Nothing 2", "The Dom", "Google", "Answer D"],
+             },
+            ];
+           
+            function renderAnswers(array) {
+                for (var i = 0; i < array.length; i++) {
+                    // 1. Create an element.
+                    var button = document.createElement("button");
+                    // 2. Add content
+                    button.setAttribute("class", "btn btn-info");
+                    button.textContent = array[i];
+                    button.setAttribute("data-value", array[i]);
+                    // 3. Append to an existing element
+                    answers.appendChild(button);
+                }
+                }
+            function renderQuestion(array) {
+                for (var i = 0; i < array.length; i++) {
+                    // 1. Create an element.
+                    var questionOnDisplay = document.createElement("h1");
+                    // 2. Add content
+                    questionOnDisplay.textContent = array[i];
+                    questionOnDisplay.setAttribute("data-value", array[i]);
+                    // 3. Append to an existing element
+                    question.append(questionOnDisplay);
+                }}
+         
+        answers.addEventListener("click", function (event){
+            if (event.target.matches("button")) {
+                console.log("You clicked a button");
+                var selectedAnswer = event.target.getAttribute("data-value");
+                console.log(selectedAnswer);
+
+                result.textContent = "";
+                var answerToDisplay = document.createElement("h3");
+                answerToDisplay.textContent = selectedAnswer;
+                result.append("Your Choice was " + selectedAnswer);
+
+                // TODO: Save to Local Storage
+
+                if (currentStage === stages.length -1){
+                    alert("Your Pizza is on its way!");
+                } else {
+                setTimeout(function () {
+                currentStage++;
+                answers.textContent = "";
+                question.textContent = "";
+                result.textContent = "";
+                var answersToDisplay = stages[currentStage].answers;
+                var questionToDisplay = stages[currentStage].question;
+                renderAnswers(answersToDisplay);
+                renderQuestion(questionToDisplay);
+                }, 1000);
+            }
+            }})
+
+        startButton.addEventListener("click", function () {
+             welcomeContainer.style.display = "none";
+             var answersToDisplay = stages[currentStage].answers;
+             var questionToDisplay = stages[currentStage].question;
+            renderAnswers(answersToDisplay);
+            renderQuestion(questionToDisplay);
+        });
 
 
             

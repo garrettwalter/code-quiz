@@ -2,3 +2,17 @@
     background-color: white;
     text-align: center;
 }
+
+#question {
+    text-align: center;
+}
+
+#answers {
+    text-align: center;
+}
+
+#result {
+    text-align: center;
+    font-size: small;
+    color: grey;
+}
