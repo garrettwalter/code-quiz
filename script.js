@@ -10,6 +10,13 @@ var finishScreen = document.getElementById("finishScreen");
 var finalScore = document.getElementById("finalScore");
 var enterInitials = document.getElementById("enterInitials");
 var fResult = document.getElementById("fResult");
+var submitBtn = document.createElement("button");
+var textInput = document.createElement("input");
+
+var scoresHeader = document.getElementById("scoreHead");
+var theScores = document.getElementById("scores");
+
+var highScoreBtn = document.getElementById("topScoreBtn");
 
 var timeLeft = 75;
 
@@ -76,15 +83,23 @@ function renderEnd() {
     highScore.textContent = "Enter Your Initials: ";
     enterInitials.appendChild(highScore);
 
-    var textInput = document.createElement("input");
+    
     textInput.getAttribute((type = "text"));
     textInput.getAttribute((id = "myText"));
     enterInitials.appendChild(textInput);
 
-    var submitBtn = document.createElement("button");
     submitBtn.setAttribute("class", "btn btn-info");
     submitBtn.textContent = "Submit";
     enterInitials.appendChild(submitBtn);
+}
+function renderScores (){
+    var scoreHead = document.createElement("h1");
+    scoreHead.textContent = "Highscores!";
+    scoresHeader.append(scoreHead);
+
+    var scores = document.createElement("h3");
+    scores.textContent = timeLeft +" - "+ textInput.value;
+    theScores.append(scores);
 }
 
 
@@ -94,10 +109,7 @@ answers.addEventListener("click", function (event) {
         var selectedAnswer = event.target.getAttribute("data-value");
         console.log(selectedAnswer);
         checkAnswer();
-        var answerToDisplay = document.createElement("h3");
-        answerToDisplay.textContent = selectedAnswer;
         
-
         // Checks for correct answer
         function checkAnswer(){
             if (currentStage===0 && selectedAnswer=== stages[0].answers[1]){
@@ -198,3 +210,20 @@ startButton.addEventListener("click", function () {
         }
     }, 1000);
 });
+
+submitBtn.addEventListener("click", function (event) {
+    if (event.target.matches("button")) {
+        console.log("You clicked a button");
+        console.log(textInput.value);
+        
+        qNa.style.display = "none";
+        finishScreen.style.display = "none";
+
+        renderScores();
+    }
+})
+
+highScoreBtn.addEventListener("click", function(){
+    welcomeContainer.style.display = "none";
+    renderScores();
+})
