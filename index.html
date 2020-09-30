@@ -37,13 +37,14 @@
         </section>
         <section id="finishScreen">
             <div class="row">
-                <div class="col-sm-12" id="allDone"></div>
+                <div class="col-sm-4" ></div>
+                <div class="col-sm-4" id="finalScore"></div>
+                <div class="col-sm-4" ></div>
             </div>
             <div class="row">
-                <div class="col-sm-12" id="finalScore"></div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12" id="enterInitials"></div>
+                <div class="col-sm-3" ></div>
+                <div class="col-sm-6" id="enterInitials"></div>
+                <div class="col-sm-3" ></div>
             </div>
             <hr>
             <div class="row">
@@ -91,6 +92,10 @@
                 question: ["A very useful tool used during development and debugging for printing content to the debugger is:"],
                 answers: ["JavaScript", "terminal/bash", "for loops", "C console.log"],
              },
+             {
+                question: ["All done!"],
+                answers: [],
+             },
             ];
            
             function renderAnswers(array) {
@@ -115,6 +120,31 @@
                     // 3. Append to an existing element
                     question.append(questionOnDisplay);
                 }}
+            function renderEnd(){
+                   // 1. Create an element.
+                var theFinalScore = document.createElement("h3");
+                    // 2. Add content
+                    theFinalScore.textContent = "Your final score is " + timeLeft;
+                    // 3. Append to an existing element
+                   finalScore.append(theFinalScore);
+
+                var highScore = document.createElement("h3");
+                highScore.textContent = "Enter Your Initials: ";
+                enterInitials.appendChild(highScore);
+
+                var textInput = document.createElement("input");
+                textInput.getAttribute(type="text");
+                textInput.getAttribute(id="myText");
+                enterInitials.appendChild(textInput);
+
+                var submitBtn = document.createElement("button");
+                submitBtn.setAttribute("class", "btn btn-info");
+                submitBtn.textContent= "Submit";
+                enterInitials.appendChild(submitBtn);
+
+
+
+            }
          
         answers.addEventListener("click", function (event){
             if (event.target.matches("button")) {
@@ -157,9 +187,12 @@
            var timer = setInterval(function(){
             timeLeft--;
             document.getElementById("timer").textContent = timeLeft;
-            if(currentStage === stages.length -1)
-            clearInterval(timer);
-            // create finish screen!!!!!!!
+            if(currentStage === stages.length -1){
+                 clearInterval(timer);
+                renderEnd();
+            }
+           
+
             },1000);
         });
 
