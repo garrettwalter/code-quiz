@@ -17,7 +17,7 @@ var currentStage = 0;
 var stages = [
     {
         question: ["Commonly used data types DO NOT include:"],
-        answers: ["strings", "C booleans", "alerts", "numbers"],
+        answers: ["strings", "c booleans", "alerts", "numbers"],
     },
     {
         question: ["The condition in an if/else statement is enclosed within ______.",],
@@ -87,33 +87,97 @@ function renderEnd() {
     enterInitials.appendChild(submitBtn);
 }
 
+
 answers.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         console.log("You clicked a button");
         var selectedAnswer = event.target.getAttribute("data-value");
         console.log(selectedAnswer);
-
-        result.textContent = "";
+        checkAnswer();
         var answerToDisplay = document.createElement("h3");
         answerToDisplay.textContent = selectedAnswer;
-        result.append("Your Choice was " + selectedAnswer);
+        
 
-        // TODO: Save to Local Storage
-
-        if (currentStage === stages.length - 1) {
-            qNa.style.display = "none";
-            fResult.textContent = "Good Job!";
-        } else {
-            setTimeout(function () {
-                currentStage++;
-                answers.textContent = "";
-                question.textContent = "";
+        // Checks for correct answer
+        function checkAnswer(){
+            if (currentStage===0 && selectedAnswer=== stages[0].answers[1]){
+                console.log("correct answer");
                 result.textContent = "";
-                var answersToDisplay = stages[currentStage].answers;
-                var questionToDisplay = stages[currentStage].question;
-                renderAnswers(answersToDisplay);
-                renderQuestion(questionToDisplay);
-            }, 1000);
+                result.append("Your Choice was Correct!");
+                setTimeout(function() {
+                    currentStage++;
+                    answers.textContent = "";
+                    question.textContent = "";
+                    result.textContent = "";
+                    var answersToDisplay = stages[currentStage].answers;
+                    var questionToDisplay = stages[currentStage].question;
+                    renderAnswers(answersToDisplay);
+                    renderQuestion(questionToDisplay);
+                }, 1000);
+            } else if (currentStage===1 && selectedAnswer=== stages[1].answers[2]){
+                console.log("correct answer");
+                result.textContent = "";
+                result.append("Your Choice was Correct!");
+                setTimeout(function() {
+                    currentStage++;
+                    answers.textContent = "";
+                    question.textContent = "";
+                    result.textContent = "";
+                    var answersToDisplay = stages[currentStage].answers;
+                    var questionToDisplay = stages[currentStage].question;
+                    renderAnswers(answersToDisplay);
+                    renderQuestion(questionToDisplay);
+                }, 1000);
+            } else if (currentStage===2 && selectedAnswer=== stages[2].answers[3]){
+                console.log("correct answer");
+                result.textContent = "";
+                result.append("Your Choice was Correct!");
+                setTimeout(function() {
+                    currentStage++;
+                    answers.textContent = "";
+                    question.textContent = "";
+                    result.textContent = "";
+                    var answersToDisplay = stages[currentStage].answers;
+                    var questionToDisplay = stages[currentStage].question;
+                    renderAnswers(answersToDisplay);
+                    renderQuestion(questionToDisplay);
+                }, 1000);
+            } else if (currentStage===3 && selectedAnswer=== stages[3].answers[1]){
+                console.log("correct answer");
+                result.textContent = "";
+                result.append("Your Choice was Correct!");
+                setTimeout(function() {
+                    currentStage++;
+                    answers.textContent = "";
+                    question.textContent = "";
+                    result.textContent = "";
+                    var answersToDisplay = stages[currentStage].answers;
+                    var questionToDisplay = stages[currentStage].question;
+                    renderAnswers(answersToDisplay);
+                    renderQuestion(questionToDisplay);
+                }, 1000);
+            } else if (currentStage===4 && selectedAnswer=== stages[4].answers[3]){
+                console.log("correct answer");
+                result.textContent = "";
+                result.append("Your Choice was Correct!");
+                setTimeout(function() {
+                    currentStage++;
+                    answers.textContent = "";
+                    question.textContent = "";
+                    result.textContent = "";
+                    var answersToDisplay = stages[currentStage].answers;
+                    var questionToDisplay = stages[currentStage].question;
+                    renderAnswers(answersToDisplay);
+                    renderQuestion(questionToDisplay);
+                }, 1000);
+            } else if (currentStage === stages.length - 1){
+                qNa.style.display = "none";
+                fResult.textContent = "Good Job!";
+            }else {
+                result.textContent = "";
+                result.append("Your Choice was Wrong! Try again");
+                timeLeft=timeLeft---15;
+            }
         }
     }
 });
