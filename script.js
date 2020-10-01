@@ -100,6 +100,13 @@ function renderScores (){
     var scores = document.createElement("h3");
     scores.textContent = timeLeft +" - "+ textInput.value;
     theScores.append(scores);
+
+    var resetBtn = document.createElement("button");
+    var resetBtnArea = document.getElementById("reset-btn");
+    resetBtn.textContent = "Go Back";
+    resetBtn.setAttribute("class", "btn btn-info");
+    resetBtn.setAttribute("onclick", "history.go(0)")
+    resetBtnArea.append(resetBtn);
 }
 
 
