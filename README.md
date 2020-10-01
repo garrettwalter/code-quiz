@@ -35,7 +35,7 @@ THEN I can save my initials and score
 [Responsive-Portfolio](https://github.com/garrettwalter/code-quiz)
 [Github-Pages](https://garrettwalter.github.io/code-quiz/)
 
-[Video demonstration of 'code-quiz'](https://drive.google.com/file/d/1A0kdTb2DLTbX2Y4yS1jCAt60Jd7XGk4B/preview) 
+[Video demonstration of 'code-quiz'](https://drive.google.com/file/d/1Up3kF8TU2QlCEqgEOVIVOQqgsNXpJmaN/preview) 
 
 
 ## Installation

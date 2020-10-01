@@ -26,23 +26,23 @@ var currentStage = 0;
 var stages = [
     {
         question: ["Commonly used data types DO NOT include:"],
-        answers: ["strings", "c booleans", "alerts", "numbers"],
+        answers: ["strings", "booleans", "alerts", "numbers"],
     },
     {
         question: ["The condition in an if/else statement is enclosed within ______.",],
-        answers: ["quotes", "curly brackets", "C parenthesis", "square brackets"],
+        answers: ["quotes", "curly brackets", "parenthesis", "square brackets"],
     },
     {
         question: ["Arrays in JavaScript can be used to store ______."],
-        answers: ["numbers and strings","other arrays","booleans","C all of the above",],
+        answers: ["numbers and strings","other arrays","booleans","all of the above",],
     },
     {
         question: ["String values must be enclosed within _____ when being assigned to variables.",],
-        answers: ["commas", "C curly brackets", "parenthesis", "quotes"],
+        answers: ["commas", "curly brackets", "parenthesis", "quotes"],
     },
     {
         question: ["A very useful tool used during development and debugging for printing content to the debugger is:",],
-        answers: ["JavaScript", "terminal/bash", "for loops", "C console.log"],
+        answers: ["JavaScript", "terminal/bash", "for loops", "console.log"],
     },
     {
         question: [],
