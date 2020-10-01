@@ -7,9 +7,11 @@ var answers = document.getElementById("answers");
 var result = document.getElementById("result");
 
 var finishScreen = document.getElementById("finishScreen");
+var wellDoneText = document.getElementById("well-done");
 var finalScore = document.getElementById("finalScore");
 var enterInitials = document.getElementById("enterInitials");
 var fResult = document.getElementById("fResult");
+
 var submitBtn = document.createElement("button");
 var textInput = document.createElement("input");
 
@@ -43,40 +45,34 @@ var stages = [
         answers: ["JavaScript", "terminal/bash", "for loops", "C console.log"],
     },
     {
-        question: ["All done!"],
+        question: [],
         answers: [],
     },
 ];
-
 function renderAnswers(array) {
     for (var i = 0; i < array.length; i++) {
-        // 1. Create an element.
         var button = document.createElement("button");
-        // 2. Add content
         button.setAttribute("class", "btn btn-info");
         button.textContent = array[i];
         button.setAttribute("data-value", array[i]);
-        // 3. Append to an existing element
         answers.appendChild(button);
     }
 }
 function renderQuestion(array) {
     for (var i = 0; i < array.length; i++) {
-        // 1. Create an element.
         var questionOnDisplay = document.createElement("h1");
-        // 2. Add content
         questionOnDisplay.textContent = array[i];
         questionOnDisplay.setAttribute("data-value", array[i]);
-        // 3. Append to an existing element
         question.append(questionOnDisplay);
     }
 }
 function renderEnd() {
-    // 1. Create an element.
+    var wellDone = document.createElement("h1");
+    wellDone.textContent = "Well done!";
+    wellDoneText.append(wellDone);
+
     var theFinalScore = document.createElement("h3");
-    // 2. Add content
     theFinalScore.textContent = "Your final score is " + timeLeft;
-    // 3. Append to an existing element
     finalScore.append(theFinalScore);
 
     var highScore = document.createElement("h3");
@@ -108,15 +104,12 @@ function renderScores (){
     resetBtn.setAttribute("onclick", "history.go(0)")
     resetBtnArea.append(resetBtn);
 }
-
-
 answers.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         console.log("You clicked a button");
         var selectedAnswer = event.target.getAttribute("data-value");
         console.log(selectedAnswer);
         checkAnswer();
-        
         // Checks for correct answer
         function checkAnswer(){
             if (currentStage===0 && selectedAnswer=== stages[0].answers[1]){
@@ -200,7 +193,6 @@ answers.addEventListener("click", function (event) {
         }
     }
 });
-
 startButton.addEventListener("click", function () {
     welcomeContainer.style.display = "none";
     var answersToDisplay = stages[currentStage].answers;
@@ -211,13 +203,13 @@ startButton.addEventListener("click", function () {
     var timer = setInterval(function () {
         timeLeft--;
         document.getElementById("timer").textContent = timeLeft;
-        if (currentStage === stages.length - 1) {
+        if (currentStage === stages.length - 1 || timeLeft <= 0) {
+            qNa.style.display = "none";
             clearInterval(timer);
             renderEnd();
         }
     }, 1000);
 });
-
 submitBtn.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         console.log("You clicked a button");
@@ -229,7 +221,6 @@ submitBtn.addEventListener("click", function (event) {
         renderScores();
     }
 })
-
 highScoreBtn.addEventListener("click", function(){
     welcomeContainer.style.display = "none";
     renderScores();
